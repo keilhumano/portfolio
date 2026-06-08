@@ -454,7 +454,7 @@ function TopBar({ route, go, soundOn, toggleSound, theme, toggleTheme }) {
   const onCase = route.page === "case";
   return (
     <React.Fragment>
-      <header className="topbar">
+      <header className="topbar" data-case={onCase ? "true" : "false"}>
         <div className="left">
           <a className="brand hoverable" onClick={() => { Sound.click(); go("home"); }}
              data-snd-hover="1">
