@@ -76,7 +76,7 @@ function Contact({ go }) {
       </p>
 
       <div style={{ marginTop: 60, paddingTop: 30, borderTop: "1px dotted var(--rule)", display: "flex", justifyContent: "space-between", fontFamily: "var(--f-mono)", fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)" }}>
-        <span>// keilchinchilla.com / contact</span>
+        <span>// keilhumano.com / contact</span>
         <span>~~ no form, on purpose</span>
         <span>v1.0 · 2026</span>
       </div>
