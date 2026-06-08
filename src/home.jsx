@@ -25,7 +25,7 @@ const PROJECTS = [
   ]
 },
 {
-  n: "03", slug: "onepoint", name: "OnePointPartitions", year: "2024", tag: "B2B quoting × 3D configurator",
+  n: "03", slug: "onepoint", name: "OnePointPartitions", short: "OPP", year: "2024", tag: "B2B quoting × 3D configurator",
   desc: "A quoting tool for commercial bathroom partitions, with a real-time 3D configurator that works on a phone. Co-designed Phase 1; led design on Phase 2.",
   meta: "UX/UI Designer → Design Lead · Web · Acklen Avenue",
   thumb: "62% on mobile · 3D on a phone",
@@ -270,7 +270,7 @@ function PreviewDeck({ active, project, cursorRef, deals, isTouch, go, onDismiss
                 <span className="center">{(typeof c === "string" ? c : c && c.label) || "preview"}</span>
               )}
               <span className="lbl">
-                <b>{project ? project.name : ""}</b>
+                <b>{project ? (project.short || project.name) : ""}</b>
                 <span>0{i + 1}/03</span>
               </span>
             </div>

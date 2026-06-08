@@ -86,17 +86,36 @@ function App() {
     document.body.scrollTop = 0;
   };
 
-  const go = (page, slug) => {
+  const scrollToAnchor = (anchor, tries = 0) => {
+    const el = document.getElementById(anchor);
+    if (!el) {
+      // The target page may not have committed yet; retry a few frames.
+      if (tries < 12) setTimeout(() => scrollToAnchor(anchor, tries + 1), 60);
+      return;
+    }
+    const lenis = lenisRef.current;
+    if (lenis) {
+      try { lenis.scrollTo(el, { offset: -80 }); return; } catch (e) {}
+    }
+    const top = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const go = (page, slug, anchor) => {
     // Reset scroll BEFORE the new page mounts so the user never sees the
     // previous page's scroll position carried over.
     resetScroll();
     if (page === "case") setRoute({ page, slug: slug || "miskitapp" });
     else setRoute({ page, slug: null });
     // And again after the new page commits, in case anything (Lenis raf,
-    // layout shift, hash) tried to restore scroll in the interim.
+    // layout shift, hash) tried to restore scroll in the interim. If an
+    // anchor was requested, scroll to it instead of snapping back to top.
     requestAnimationFrame(() => {
       resetScroll();
-      requestAnimationFrame(resetScroll);
+      requestAnimationFrame(() => {
+        if (anchor) scrollToAnchor(anchor);
+        else resetScroll();
+      });
     });
   };
 
