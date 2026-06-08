@@ -2512,6 +2512,7 @@ body[data-motion-notes="on"] .mnote { display: inline-block; }
   z-index: 1000;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
   padding: 26px 32px 24px;
   cursor: auto;
   background: var(--bg);
@@ -2546,6 +2547,7 @@ body[data-motion-notes="on"] .mnote { display: inline-block; }
   justify-self: start;
   max-width: 880px;
   width: 100%;
+  min-width: 0;
   padding: 40px 0;
 }
 
@@ -2673,27 +2675,36 @@ body[data-motion-notes="on"] .mnote { display: inline-block; }
 
 .welcome-muted {
   display: inline-flex;
-  align-items: baseline;
-  gap: 14px;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
   font-family: var(--f-mono);
   font-size: var(--tx-sm);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--muted);
-  padding: 8px 0;
+  color: var(--ink-2);
+  padding: 12px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: color-mix(in oklch, var(--bg-2) 55%, transparent);
   text-align: left;
   align-self: start;
-  transition: color 200ms var(--ease-out);
+  transition: color 200ms var(--ease-out), border-color 200ms var(--ease-out), background 200ms var(--ease-out);
 }
 .welcome-muted > span { white-space: nowrap; }
-.welcome-muted:hover { color: var(--ink-2); }
+.welcome-muted:hover {
+  color: var(--ink);
+  border-color: var(--ink-2);
+  background: var(--bg-2);
+}
 .welcome-muted .hint {
   font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--muted);
-  opacity: 0.7;
+  opacity: 1;
+  transition: color 200ms var(--ease-out);
 }
+.welcome-muted:hover .hint { color: var(--ink-2); }
 
 .welcome-foot {
   display: flex; justify-content: space-between; align-items: center;
@@ -2767,6 +2778,27 @@ body[data-motion-notes="on"] .mnote { display: inline-block; }
 @media (max-width: 700px) {
   .welcome-enter { gap: 12px; flex-wrap: wrap; }
   .welcome-enter .hint { width: 100%; padding-bottom: 0; margin-left: 0; }
+
+  /* Top/bottom chrome: let the second segment wrap instead of overflowing. */
+  .welcome-chrome { flex-wrap: wrap; gap: 4px 14px; }
+  .welcome-foot { flex-wrap: wrap; gap: 6px 14px; }
+
+  /* Boot lines: drop the side annotation onto its own row so nothing
+     clips off the right edge (no more horizontal overflow). */
+  .welcome-boot .boot-line {
+    flex-wrap: wrap;
+    white-space: normal;
+    row-gap: 2px;
+  }
+  .welcome-boot .boot-line .msg {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+  .welcome-boot .boot-line .side {
+    flex: 0 0 100%;
+    padding-left: 26px;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────
