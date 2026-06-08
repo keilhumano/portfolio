@@ -1003,6 +1003,7 @@ window.CASE_SECTIONS = CASE_SECTIONS;
 function CaseRail({ slug }) {
   const sections = CASE_SECTIONS[slug];
   const [active, setActive] = React.useState(sections ? sections[0].id : null);
+  const [open, setOpen] = React.useState(false); // mobile slide-out panel
 
   React.useEffect(() => {
     if (!sections) return;
@@ -1049,24 +1050,44 @@ function CaseRail({ slug }) {
 
   if (!sections) return null;
   return (
-    <nav className="case-rail" aria-label="Case study sections">
-      <div className="head">
-        <span className="lead">// case map</span>
-        <span>{slug}</span>
-      </div>
-      {sections.map((s, i) => (
-        <a key={s.id}
-           href={"#" + s.id}
-           className="item hoverable"
-           data-active={active === s.id}
-           data-snd-hover="1"
-           onClick={(e) => { e.preventDefault(); Sound.click(); smoothToId(s.id); }}>
-          <span className="dot"></span>
-          <span className="num">{String(i).padStart(2, "0")}</span>
-          <span className="name">{s.label}</span>
-        </a>
-      ))}
-    </nav>
+    <React.Fragment>
+      {/* Mobile-only peeking tab to open the case map. */}
+      <button
+        className="case-rail-tab hoverable"
+        aria-label={open ? "Close case map" : "Open case map"}
+        data-open={open}
+        onClick={() => { Sound.click(); setOpen((o) => !o); }}
+        data-snd-hover="1">
+        <span className="case-rail-tab-label">{open ? "close" : "map"}</span>
+      </button>
+
+      {open ? (
+        <div
+          className="case-rail-scrim"
+          onClick={() => { Sound.click(); setOpen(false); }}
+          aria-hidden="true"></div>
+      ) : null}
+
+      <nav className={"case-rail" + (open ? " open" : "")} data-open={open}
+           aria-label="Case study sections">
+        <div className="head">
+          <span className="lead">// case map</span>
+          <span>{slug}</span>
+        </div>
+        {sections.map((s, i) => (
+          <a key={s.id}
+             href={"#" + s.id}
+             className="item hoverable"
+             data-active={active === s.id}
+             data-snd-hover="1"
+             onClick={(e) => { e.preventDefault(); Sound.click(); smoothToId(s.id); setOpen(false); }}>
+            <span className="dot"></span>
+            <span className="num">{String(i).padStart(2, "0")}</span>
+            <span className="name">{s.label}</span>
+          </a>
+        ))}
+      </nav>
+    </React.Fragment>
   );
 }
 

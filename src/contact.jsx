@@ -45,8 +45,8 @@ function Contact({ go }) {
       <div className="contact-grid">
         <div className="item">
           <h6>// email</h6>
-          <a href="mailto:keil@keilchinchilla.com" className="hoverable" data-snd-hover="1">
-            keil@keilchinchilla.com
+          <a href="mailto:keilhumano@gmail.com" className="hoverable" data-snd-hover="1">
+            keilhumano@gmail.com
           </a>
           <span className="v" style={{ color: "var(--muted)", fontSize: 14 }}>preferred · 24h reply</span>
         </div>
@@ -59,7 +59,7 @@ function Contact({ go }) {
         </div>
         <div className="item">
           <h6>// elsewhere</h6>
-          <a href="https://www.linkedin.com/in/keilhumano/" target="_blank" rel="noopener" className="hoverable" data-snd-hover="1">LinkedIn ↗</a>
+          <a href="https://www.linkedin.com/in/keilhumano/" target="_blank" rel="noopener" className="hoverable" data-snd-hover="1">LinkedIn</a>
 
         </div>
         <div className="item">

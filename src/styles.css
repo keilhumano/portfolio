@@ -1858,7 +1858,66 @@ button:not([data-on="true"]):hover .sound-icon .slash { background: var(--ink-2)
 .case-rail .item[data-active="true"] .name {
   max-width: 220px; opacity: 1;
 }
-@media (max-width: 1024px) { .case-rail { display: none; } }
+
+/* Desktop: the mobile tab + scrim don't exist. */
+.case-rail-tab { display: none; }
+.case-rail-scrim { display: none; }
+
+@media (max-width: 1024px) {
+  /* Peeking tab anchored to the right edge. */
+  .case-rail-tab {
+    display: flex; align-items: center; justify-content: center;
+    position: fixed;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    z-index: 41;
+    padding: 16px 7px;
+    border: 1px solid var(--rule);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    background: color-mix(in oklch, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    color: var(--muted);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 200ms var(--ease-out), background 200ms var(--ease-out);
+  }
+  .case-rail-tab .case-rail-tab-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .case-rail-tab[data-open="true"] { color: var(--accent); }
+
+  /* The rail becomes a slide-in panel from the right edge. */
+  .case-rail {
+    display: flex;
+    right: 0; top: 50%;
+    transform: translate(100%, -50%);
+    max-height: 78vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 42;
+    gap: 2px;
+    transition: transform 320ms var(--ease-out);
+  }
+  .case-rail.open { transform: translate(0, -50%); }
+  .case-rail .item { padding: 8px 4px; }
+  /* No hover on touch: section names are always visible in the panel. */
+  .case-rail .item .name { max-width: 220px; opacity: 1; }
+
+  .case-rail-scrim {
+    display: block;
+    position: fixed; inset: 0;
+    z-index: 40;
+    background: color-mix(in oklch, var(--bg) 45%, transparent);
+    backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+    animation: case-rail-scrim-in 200ms var(--ease-out) both;
+  }
+  @keyframes case-rail-scrim-in { from { opacity: 0; } to { opacity: 1; } }
+}
 
 /* ── reading progress chip ── */
 .read-progress {
@@ -1910,6 +1969,30 @@ button:not([data-on="true"]):hover .sound-icon .slash { background: var(--ink-2)
   .topbar .mid { display: none; }
   .topbar .right { display: none; }
   .topbar { grid-template-columns: 1fr auto; }
+
+  /* On a case study, the reading progress was clashing with the menu button.
+     Drop it onto its own full-width second row, leaving brand + hamburger
+     untouched on the first row. */
+  .topbar[data-case="true"] {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand menu"
+      "read  read";
+    row-gap: 10px;
+    align-items: center;
+  }
+  .topbar[data-case="true"] .left { display: contents; }
+  .topbar[data-case="true"] .brand { grid-area: brand; }
+  .topbar[data-case="true"] .menu-btn { grid-area: menu; }
+  .topbar[data-case="true"] .read-progress {
+    grid-area: read;
+    width: 100%;
+    margin-left: 0;
+  }
+  .topbar[data-case="true"] .read-progress .track {
+    flex: 1;
+    width: auto;
+  }
 }
 
 .drawer {
