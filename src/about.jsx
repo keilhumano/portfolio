@@ -163,8 +163,8 @@ function About({ go }) {
             So, who's behind this whole thing?
           </h1>
           <p className="lede fade-in">
-            Keil Chinchilla is a Honduran product designer based in Tegucigalpa. He's been designing
-            for paying clients since before he finished his degree, and he reads liner notes.
+            My name is Keil. Yes, strange name, it's pronounced like "kale". <br />
+            I am a user, as well as a designer for fellow users.
           </p>
         </div>
         <figure className="about-portrait fade-in">
@@ -319,7 +319,7 @@ function About({ go }) {
       </section>
 
       {/* ── 05, Colophon ─────────────────────────────────────── */}
-      <section className="about-section" style={{borderBottom: 0}}>
+      <section className="about-section" id="colophon" style={{borderBottom: 0}}>
         <aside className="side fade-in">
           <span>// 05</span><br/>
           <b>Colophon</b><br/>

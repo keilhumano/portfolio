@@ -16,9 +16,9 @@ function CSCover({ meta, title, tagline, year, role, context }) {
         <span className="small">{tagline}</span>
       </h1>
       <div className="bot">
-        <span><Brk>[ role ]</Brk> &nbsp;{role}</span>
-        <span><Brk>[ year ]</Brk> &nbsp;{year}</span>
-        <span><Brk>[ context ]</Brk> &nbsp;{context}</span>
+        <span className="bm"><span className="k"><Brk>[ role ]</Brk></span><span className="v">{role}</span></span>
+        <span className="bm"><span className="k"><Brk>[ year ]</Brk></span><span className="v">{year}</span></span>
+        <span className="bm"><span className="k"><Brk>[ context ]</Brk></span><span className="v">{context}</span></span>
         <span className="mono">scroll ↓</span>
       </div>
       <span className="mnote" style={{top: 80, right: 30, display: undefined}}>

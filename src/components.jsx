@@ -559,8 +559,7 @@ function Footer({ go }) {
       <div>
         <h6>System</h6>
         <a className="hoverable" data-snd-hover="1">EN / ES (soon)</a>
-        <a className="hoverable" data-snd-hover="1">Reduced motion</a>
-        <a className="hoverable" data-snd-hover="1">Colophon</a>
+        <a onClick={() => go("about", null, "colophon")} className="hoverable" data-snd-hover="1">Colophon</a>
       </div>
     </footer>
   );

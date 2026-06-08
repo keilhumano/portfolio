@@ -618,6 +618,27 @@ button:not([data-on="true"]):hover .sound-icon .slash { background: var(--ink-2)
   letter-spacing: 0.14em;
   color: var(--muted);
 }
+.cs-cover .bot .bm .k { margin-right: 8px; }
+@media (max-width: 760px) {
+  /* Stack the label above its value so role/year/context read cleanly
+     instead of running together on one cramped line. */
+  .cs-cover .bot {
+    flex-wrap: wrap;
+    gap: 18px 24px;
+  }
+  .cs-cover .bot .bm {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cs-cover .bot .bm .k { margin-right: 0; }
+  .cs-cover .bot .bm .v {
+    color: var(--ink-2);
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  .cs-cover .bot .mono { flex-basis: 100%; }
+}
 
 .cs-section {
   padding: 120px 0;
