@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+.thumbnail
+
+# Unreferenced local-only assets (not used by the site)
+uploads/
+screenshots/
