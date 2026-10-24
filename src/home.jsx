@@ -136,7 +136,7 @@ function Home({ go }) {
           </div>
           <div className="hero-figure-meta">
             <div className="row"><span>[ designer ]</span><b>Keil&nbsp;Chinchilla</b></div>
-            <div className="row"><span>[ based ]</span><b>TGU, HONDURAS</b></div>
+            <div className="row"><span>[ based ]</span><b>MEXICO CITY, MX</b></div>
             <div className="row"><span></span><b>OPEN TO RELOCATE · EUR | LATAM.</b></div>
             <div className="row"><span>[ since ]</span><b>5+ years shipping</b></div>
           </div>
