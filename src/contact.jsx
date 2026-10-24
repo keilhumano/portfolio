@@ -38,7 +38,7 @@ function Contact({ go }) {
         <div className="status">
           <span><Brk breath>[ status ]</Brk></span>
           <b>Open to relocate, 2026 / Q3</b>
-          <span style={{ marginTop: 8, display: "block" }}><span className="live"><span className="dot"></span> live in Tegucigalpa</span></span>
+          <span style={{ marginTop: 8, display: "block" }}><span className="live"><span className="dot"></span> live in Mexico City</span></span>
         </div>
       </div>
 
@@ -53,7 +53,7 @@ function Contact({ go }) {
         <div className="item">
           <h6>// based</h6>
           <span className="v">
-            Tegucigalpa, Honduras
+            Mexico City, México
             <small>UTC−6 · open to relocate</small>
           </span>
         </div>
